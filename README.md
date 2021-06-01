@@ -1,10 +1,8 @@
-# MatchMaker
+![Banner](https://raw.githubusercontent.com/s22-tech/MatchMaker/master/screenshots/banner.png)
 
 A PHP script to help people find their perfect mate.
 
 Developed and maintained by [Marc Coleman](https://github.com/s22-tech). Copyright s22Tech.
-
-![Banner](https://raw.githubusercontent.com/s22-tech/MatchMaker/master/screenshots/banner.png)
 
 ## Overview
 
