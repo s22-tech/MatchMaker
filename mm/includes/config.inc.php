@@ -10,6 +10,10 @@ $user = get_current_user();
 $basepath = '/home/'.$user.'/projects';  // Change this path to match your server.
 $ini = parse_ini_file($basepath.'/conf/config.ini', true);
 
+
+//////////////////////////
+
+
 $settings = include 'db.inc.php';
 
 $config = array_merge($ini, $settings);  // The $config array is used in other scripts in this app.

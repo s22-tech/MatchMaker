@@ -22,4 +22,4 @@ if (isset($_POST['user'])) {
 __halt_compiler();
 
 This file can't be named .inc.php
-That prevents signup.php from using it since those files are banned from being called by browsers.
+That prevents signup.php from using it since those files are banned from being called by browsers with the .htaccess file.

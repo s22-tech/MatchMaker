@@ -1,0 +1,5 @@
+## Secure .htaccess file
+<FilesMatch "^.ht|\.(md|txt|inc\.php)$">
+   Order allow,deny
+   Deny from all
+</FilesMatch>
