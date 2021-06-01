@@ -6,14 +6,14 @@ Developed and maintained by [Marc Coleman](https://github.com/s22-tech). Copyrig
 
 ---
 
+![Banner](https://raw.githubusercontent.com/s22-tech/MatchMaker/master/screenshots/banner.png)
+
 ## Overview
 
 This script started life as Robin's Nest from the "Learning PHP, MySQL, & JavaScript" book by https://github.com/RobinNixon but soon took on a life of it's own and now has become production worthy.  I plan to take this a lot further with the help of the GitHub community, however the underlying philosophy of secure, self-contained, and lightweight will always remain.
 
 The look and feel can be changed in a flash simply by replacing the bootstrap file with your choice from https://bootswatch.com
 Check out their different themes.
-
-![Banner](https://raw.githubusercontent.com/s22-tech/MatchMaker/master/screenshots/banner.png)
 
 ## Requirements
 
