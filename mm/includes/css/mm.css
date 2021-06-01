@@ -1,0 +1,213 @@
+@import 'lato.css';
+@import 'shadows.css';
+
+/*
+https://css-tricks.com/snippets/css/complete-guide-grid/
+*/
+
+
+html, body {
+	height : 100%;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+/*   -webkit-user-select: none; */   /* Prevents a visitor from copying the text from the screen. */
+}
+
+html {
+	margin     : auto;
+	background : #fff
+/* 	position: relative; */
+	min-height: 100%;
+
+}
+
+
+body {
+	display: flex;
+	flex-direction: column;
+	vertical-align : middle;
+	background : #fff;
+}
+
+/* Small devices (landscape phones, 544px and up) */
+@media (min-width: 300px) {
+	h1 {font-size: 1.1rem;}  /*1rem = 16px*/
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+	h1 {font-size: 1.5rem;}  /*1rem = 16px*/
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	h1 {font-size: 1.5rem;}  /*1rem = 16px*/
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	h1 {font-size: 2rem;}  /*1rem = 16px*/
+}
+
+img {
+  border             : 1px solid black;
+  margin-right       : 15px;
+  -moz-box-shadow    : 2px 2px 2px #888;
+  -webkit-box-shadow : 2px 2px 2px #888;
+  box-shadow         : 2px 2px 2px #888;
+}
+
+ul.grid {
+	display               : grid;
+	grid-template-columns : repeat(auto-fill, minmax(220px, 1fr));
+	grid-row-gap          : 50px;
+	list-style-type       : none;
+}
+
+
+label {
+  display    : inline-block;
+  text-align : right;
+}
+
+
+
+/* CLASSES */
+.clearfix { display: block; }
+
+.content {
+	flex: 1 0 auto; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
+	padding: 10px;
+	font-family : Lato, "Lucida Grande", verdana, sans-serif;
+	font-size   : 14pt;
+}
+
+/* Sticky Footer */
+.footer {
+	flex-shrink: 0;
+	line-height: 70px;  /* Vertically center the text */
+	background-color: #f5f5f5;
+}
+
+.container {
+	justify-content: center;
+	align-items: center;
+}
+
+.subhead {
+	font-weight : bold;
+	font-size   : 35px;
+}
+
+.info {
+  font-style : italic;
+  margin     : 40px 0px;
+  text-align : center;
+}
+
+.center {
+  text-align : center;
+}
+
+.taken, .error {
+  color : red;
+}
+
+.available {
+  color : green;
+}
+
+.whisper {
+  font-style : italic;
+  color      : #006600;
+}
+
+.thumb {
+	max-height : 100%;
+	height     : auto;
+	width      : 100px;
+}
+
+.mid-size {
+	max-width  : 100%;
+	height     : auto;
+	width      : 200px;
+}
+
+.username {
+  text-align  : center;
+  background  : #e8f7e0;
+  color       : #40d;
+  font-size   : 1.5rem;
+  padding     : 4px;
+}
+
+.card-body {
+	font-size : 0.9em;
+}
+
+@media all and (max-width: 50em) {
+  .my-breakpoint .ui-block-a,
+  .my-breakpoint .ui-block-b,
+  .my-breakpoint .ui-block-c,
+  .my-breakpoint .ui-block-d,
+  .my-breakpoint .ui-block-e {
+    width: 100%;
+    float:none;
+  }
+}
+
+@media all and (min-width: 45em) {
+ .my-breakpoint.ui-grid-b .ui-block-a { width: 49.95%; }
+ .my-breakpoint.ui-grid-b .ui-block-b,
+ .my-breakpoint.ui-grid-b .ui-block-c { width: 24.925%; }
+}
+
+@media (max-width: 500px) {
+	#content-desktop {display: none;}
+	#content-mobile  {display: block;}
+}
+
+@media (min-width: 500px) {
+	#content-desktop {display: block;}
+	#content-mobile  {display: none;}
+}
+
+
+/* ID's */
+#logo-txt {
+	font-family: 'Shadows Into Light Two', cursive;
+	color       : green;
+	margin      : 0 0 -15px 0;
+	vertical-align : top;
+}
+
+/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+@media screen and (min-width: 601px) {
+  #logo-txt {
+    font-size: 77px;
+  }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  #logo-txt {
+    font-size: 33px;
+  }
+}
+
+#logo-img {
+  position           : relative;
+  border             : 0px;
+  margin-left        : 0px;
+  margin-right       : 0px;
+  top                : 0px;
+  -moz-box-shadow    : 0px 0px 0px;
+  -webkit-box-shadow : 0px 0px 0px;
+  box-shadow         : 0px 0px 0px;
+}
+
+#used {
+  margin-top:50px;
+}
+
