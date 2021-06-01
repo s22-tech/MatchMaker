@@ -13,6 +13,8 @@ This script started life as Robin's Nest from the "Learning PHP, MySQL, & JavaSc
 The look and feel can be changed in a flash simply by replacing the bootstrap file with your choice from https://bootswatch.com
 Check out their different themes.
 
+![Banner](https://raw.githubusercontent.com/s22-tech/MatchMaker/master/screenshots/banner.png)
+
 ## Requirements
 
 - PHP 8.0+
