@@ -73,4 +73,8 @@ Check out their different themes.
 
 Licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
+## Screenshot
+
+![Profile Page](https://raw.githubusercontent.com/s22-tech/MatchMaker/master/screenshots/profile-page.png)
+
 
