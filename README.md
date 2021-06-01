@@ -64,6 +64,8 @@ Check out their different themes.
 ## To Do
 
 - add ability to upload multiple photos
+- add an admin section
+- add a forgotten password feature
 
 ## License
 

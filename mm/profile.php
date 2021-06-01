@@ -19,7 +19,7 @@ $email       = $row['email']       ?? '';
 $info        = $row['info']        ?? '';
 // $tz       = $row['timezone']    ?? '';
 $state       = $row['state']       ?? 'XX';
-$relocate    = $row['relocate']    ?? '';
+$relocate    = $row['relocate']    ?? 'maybe';
 ///////////////////////////////
 
 if (isset($_POST['email']) && isset($_POST['gender'])) {
@@ -36,10 +36,9 @@ if (isset($_POST['email']) && isset($_POST['gender'])) {
 
     if ($row) {
 			$sql = "UPDATE `members`
-			        SET info = :info, birth_month = :birth_month, birth_year = :birth_year, email = :email, status = :status,
-			            gender = :gender, state = :state, relocate = :relocate
-                 WHERE user = user
-                 AND   user = :user";
+			        SET `info` = :info, `birth_month` = :birth_month, `birth_year` = :birth_year, `email` = :email, `status` = :status,
+			            `gender` = :gender, `state` = :state, `relocate` = :relocate
+                 WHERE user = :user";
 			$pdo->prepare($sql)->execute(['user' => $user, 'info' => $info, 'gender' => $gender, 'status' => $status, 'birth_month' => $birth_month, 'birth_year' => $birth_year, 'state' => $state, 'email' => $email, 'relocate' => $relocate]);
     }
     else {
