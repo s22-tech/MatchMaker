@@ -34,7 +34,7 @@ $logo_filename = 'logo.png';  // The name of your logo image.
 //////////////////////////
 /// Email
 //////////////////////////
-$config['email'] = 'info@s22.us';
+$config['email'] = '';
 
 
 //////////////////////////
