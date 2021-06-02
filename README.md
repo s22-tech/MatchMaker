@@ -4,7 +4,7 @@ A PHP script to help people find their perfect mate.
 
 Developed and maintained by [Marc Coleman](https://github.com/s22-tech). Copyright s22Tech.
 
-Demo located at [Demo](https://www.s22.us/mm/)
+Demo located at [s22.us/mm](https://www.s22.us/mm/)
 
 ## Overview
 
