@@ -58,7 +58,7 @@ Check out their different themes.
 
 ## Installation
 - Create a new database on your server
-- Run the  installer script and fill in the fields
+- Run the  installer at www.your-domain/mm/install/ and fill in the fields
 - You're done!
 
 ## To Do
