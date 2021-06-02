@@ -15,7 +15,7 @@
 		$pass   = sanitize_string($_POST['pass']);
 		$gender = sanitize_string($_POST['gender']);
 
-		if ($icode !== sanitize_string($_POST['icode']) && $config['privacy'] === 'private') {
+		if (isset($_POST['icode']) && $icode !== sanitize_string($_POST['icode']) && $config['privacy'] === 'private') {
 			die('Please request your <a href="/info/signup.php">invitation code</a>.</div></body></html>');
 		}
 

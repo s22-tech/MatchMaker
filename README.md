@@ -4,6 +4,8 @@ A PHP script to help people find their perfect mate.
 
 Developed and maintained by [Marc Coleman](https://github.com/s22-tech). Copyright s22Tech.
 
+Demo located at [Demo](https://www.s22.us/mm/)
+
 ## Overview
 
 This script started life as Robin's Nest from the "Learning PHP, MySQL, & JavaScript" book by https://github.com/RobinNixon but soon took on a life of it's own and now has become production worthy.  I plan to take this a lot further with the help of the GitHub community, however the underlying philosophy of secure, self-contained, and lightweight will always remain.

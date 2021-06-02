@@ -49,23 +49,18 @@ function show_profile ($view, $user) {
 	echo PHP_EOL . '<div class="col-lg-4">' . PHP_EOL;
 	$img_src = $config['rewrite_base'] .'/includes/get_image.php?view='. strtolower($view) .'/'. $view .'.jpg';
 
-	if (!empty($_GET['view'])) {
-		$originals = $config['image_dir'] .'/originals/'. strtolower($view);
-		if (is_dir($originals)) {
-			$files = scandir($originals, SCANDIR_SORT_DESCENDING);
-			$newest_img = $files[0];
-		}
-   	if (file_exists($config['image_dir'] .'/members/'. strtolower($view) .'/'. $view .'.jpg')) {
-			echo '<a href="'. $config['rewrite_base'] .'/images/originals/'. strtolower($view) .'/'. $newest_img .'" data-rel="lightcase"> <img src="'. $img_src .'" style="float:left;" alt="This is the default caption text" /> </a>';
-      }
-		else {
-			echo '<img src="'. $config['rewrite_base'] .'/images/no_image_yet.png" width="90px" height="90px" style="float:left;" />';
-		}
-   }
-   else {
-// 		echo '<a href="'. $config['rewrite_base'] .'/members.php?view='. $view .'"> <img src="'. $img_src .'" style="float:left;" /> </a>';
-		echo '<img src="'. $img_src .'" style="float:left;" />';
-   }
+	$originals = $config['image_dir'] .'/originals/'. strtolower($view);
+	if (is_dir($originals)) {
+		$files = scandir($originals, SCANDIR_SORT_DESCENDING);
+		$newest_img = $files[0];
+	}
+	if (file_exists($config['image_dir'] .'/members/'. strtolower($view) .'/'. $view .'.jpg')) {
+		echo '<a href="'. $config['rewrite_base'] .'/images/originals/'. strtolower($view) .'/'. $newest_img .'" data-rel="lightcase"> <img src="'. $img_src .'" style="float:left;" alt="This is the default caption text" /> </a>';
+	}
+	else {
+		echo '<img src="'. $config['rewrite_base'] .'/images/no_image_yet.png" width="90px" height="90px" style="float:left;" />';
+	}
+
    echo '</div>' . PHP_EOL;
 
 	$stmt = $pdo->prepare("SELECT * FROM `foes` WHERE `user`= :user AND `foe`= :view");
@@ -79,7 +74,7 @@ function show_profile ($view, $user) {
    if ($row) {
    	$birth_year = $row['birth_year'] == 0 ? '' : $row['birth_year'];
    	echo '<div class="col-lg-6">';
-      echo '<b>Marital Status:</b> '. $row['status'] . '<br>'. PHP_EOL;  // never married
+      echo '<b>Marital Status:</b> '. ucwords($row['status']) . '<br>'. PHP_EOL;  // never married
    	$month = $row['birth_month'] ? DateTime::createFromFormat('!m', $row['birth_month'])->format('F') : '';
       echo '<b>Birthdate:</b> '. $month . ' ' . $birth_year . '<br>'. PHP_EOL;
       echo '<b>State:</b> '. $row['state'] . '<br>'. PHP_EOL;
