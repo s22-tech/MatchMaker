@@ -69,6 +69,7 @@ if (isset($_POST['submit'])) {
 						`birth_year` int(4) DEFAULT NULL,
 						`status` varchar(8) COLLATE latin1_general_ci NOT NULL DEFAULT '',
 						`state` char(2) COLLATE latin1_general_ci DEFAULT '',
+						`timezone` varchar(5) COLLATE latin1_general_ci DEFAULT NULL,
 						 PRIMARY KEY (`id`),
 						 UNIQUE KEY `user_2` (`user`),
 						 KEY `user` (`user`(6))"
@@ -78,8 +79,8 @@ if (isset($_POST['submit'])) {
 						"`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 						`auth`  varchar(16) COLLATE latin1_general_ci DEFAULT NULL,
 						`recip` varchar(16) COLLATE latin1_general_ci DEFAULT NULL,
-						`pm` char(1) COLLATE latin1_general_ci DEFAULT NULL,
-						`time` int(10) unsigned DEFAULT NULL,
+						`pm` tinyint(1) DEFAULT NULL,
+						`date_time` datetime DEFAULT NULL,
 						`message` varchar(4096) COLLATE latin1_general_ci DEFAULT NULL,
 						`hide` varchar(3) COLLATE latin1_general_ci NOT NULL DEFAULT 'no',
 						 PRIMARY KEY (`id`),

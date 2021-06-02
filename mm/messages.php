@@ -20,9 +20,9 @@ if (isset($_POST['message'])) {
 	$message = sanitize_string($_POST['message']);
 	if ($message != '') {
 		$pm   = substr(sanitize_string($_POST['pm']), 0, 1);
-		$time = time();
-		$sql = "INSERT INTO `messages` (`auth`, `recip`, `pm`, `time`, `message`) VALUES (:auth, :recip, :pm, :time, :message)";
-		$pdo->prepare($sql)->execute(['auth' => $user, 'recip' => $view, 'pm' => $pm, 'time' => $time, 'message' => $message]);
+		$date_time = new DateTime('NOW', new DateTimeZone('UTC'));
+		$sql = "INSERT INTO `messages` (`auth`, `recip`, `pm`, `date_time`, `message`) VALUES (:auth, :recip, :pm, :date_time, :message)";
+		$pdo->prepare($sql)->execute(['auth' => $user, 'recip' => $view, 'pm' => $pm, 'date_time' => $date_time, 'message' => $message]);
 	}
 }
 
@@ -80,13 +80,14 @@ if ($view != '') {
     if ($audience == '0') {
 		$stmt = $pdo->prepare("SELECT * FROM `messages`
 		                       WHERE `recip` = :user1 OR `auth` = :user2 OR `pm` = '0'
-		                       AND `time` BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW()
-		                       ORDER BY `time` DESC");
+		                       AND `date_time` BETWEEN DATE_SUB(UTC_TIMESTAMP(), INTERVAL {$config['public_message_interval']} DAY) AND UTC_TIMESTAMP()
+		                       ORDER BY `date_time` DESC");
 		$stmt->execute(['user1' => $user, 'user2' => $user]);
 	}
 	else {
 		// Private messages from a single member.
-		$stmt = $pdo->prepare("SELECT * FROM `messages` WHERE `recip` = :user1 AND `auth` = :view1 OR `auth` = :user2 AND `recip` = :view2 ORDER BY `time` DESC");
+		$stmt = $pdo->prepare("SELECT * FROM `messages` WHERE `recip` = :user1 AND `auth` = :view1 OR `auth` = :user2 AND `recip` = :view2
+		                       ORDER BY `date_time` DESC");
 		$stmt->execute(['user1' => $user, 'user2' => $user, 'view1' => $view, 'view2' => $view]);
 	}
 
@@ -109,24 +110,32 @@ if ($view != '') {
 		else { $author = $row['auth']; }
 
 		echo '<td>' . PHP_EOL;
-		if ($row['pm'] == 0 || $row['auth'] === $user || $row['recip'] === $user) {
-			echo date('M j, Y @ g:ia ', $row['time'] + (int)$tz * 60 * 60);
+		if ($row['pm'] === 0 || $row['auth'] === $user || $row['recip'] === $user) {
+			$d = new DateTime($row['date_time']);
+			$d->modify($tz .' hours');  // Change to members timezone.
+			echo $d->format('M j, Y @ g:ia');
+
 			echo '</td>'. PHP_EOL .'<td>&nbsp;</td>'. PHP_EOL .'<td>' . PHP_EOL;
-			echo " <a href='{$config['rewrite_base']}/messages.php?view=". $row['auth'] ."'>". ucwords($author). '</a> ';
+			if ($author === 'You') {
+				echo ucwords($author);
+			}
+			else {
+				echo " <a href='{$config['rewrite_base']}/messages.php?view=". $row['auth'] ."'>". ucwords($author). '</a> ';
+			}
+			$recip = $row['recip'] == $user ? 'you' : ucwords($row['recip']);
+			if ($row['pm'] === 0) {
+				echo ' sent a public message: &quot;' . $row['message'] . '&quot; ';
+			}
+			else {
+				echo ' whispered to '. $recip .': <span class="whisper">&quot;' . $row['message']. '&quot;</span> ';
+				if ($row['recip'] == $user)
+					echo "[<a href='{$config['rewrite_base']}/messages.php?view=$view&hide=". $row['id'] ."'><small>hide</small></a>]";
+			}
+			echo '</td></tr>' . PHP_EOL;
 		}
 
-		$recip = $row['recip'] == $user ? 'you' : ucwords($row['recip']);
-		if ($row['pm'] == 0) {
-			echo 'sent a public message: &quot;' . $row['message'] . '&quot; ';
-		}
-		else {
-			echo 'whispered to '. $recip .': <span class="whisper">&quot;' . $row['message']. '&quot;</span> ';
-			if ($row['recip'] == $user)
-				echo "[<a href='{$config['rewrite_base']}/messages.php?view=$view&hide=". $row['id'] ."'><small>hide</small></a>]";
-		}
-		echo '</td></tr>' . PHP_EOL;
-		echo '<tr><td> &nbsp; </td></tr>' . PHP_EOL;
-	}
+// 		echo '<tr><td> &nbsp; </td></tr>' . PHP_EOL;  // Adds extra spacing between table rows.
+	}  // END while
 	echo '</table>' . PHP_EOL;
 }
 else {
