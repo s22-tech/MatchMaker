@@ -17,7 +17,7 @@ $gender      = $row['gender']      ?? '';
 $status      = $row['status']      ?? '';
 $email       = $row['email']       ?? '';
 $info        = $row['info']        ?? '';
-// $tz       = $row['timezone']    ?? '';
+$tz          = $row['timezone']    ?? '';
 $state       = $row['state']       ?? 'XX';
 $relocate    = $row['relocate']    ?? 'maybe';
 ///////////////////////////////
@@ -25,7 +25,7 @@ $relocate    = $row['relocate']    ?? 'maybe';
 if (isset($_POST['email']) && isset($_POST['gender'])) {
    $state       = sanitize_string( $_POST['state'] );
    $relocate    = sanitize_string( $_POST['relocate'] );
-//    $tz       = sanitize_string( $_POST['timezone'] );
+   $tz          = sanitize_string( $_POST['timezone'] );
    $info        = sanitize_string( $_POST['info'] );
    $info        = preg_replace('/\s\s+/', ' ', $info);
    $email       = sanitize_string( $_POST['email'] );
@@ -37,14 +37,14 @@ if (isset($_POST['email']) && isset($_POST['gender'])) {
     if ($row) {
 			$sql = "UPDATE `members`
 			        SET `info` = :info, `birth_month` = :birth_month, `birth_year` = :birth_year, `email` = :email, `status` = :status,
-			            `gender` = :gender, `state` = :state, `relocate` = :relocate
+			            `gender` = :gender, `state` = :state, `relocate` = :relocate, `timezone` = :timezone
                  WHERE user = :user";
-			$pdo->prepare($sql)->execute(['user' => $user, 'info' => $info, 'gender' => $gender, 'status' => $status, 'birth_month' => $birth_month, 'birth_year' => $birth_year, 'state' => $state, 'email' => $email, 'relocate' => $relocate]);
+			$pdo->prepare($sql)->execute(['user' => $user, 'info' => $info, 'gender' => $gender, 'status' => $status, 'birth_month' => $birth_month, 'birth_year' => $birth_year, 'state' => $state, 'email' => $email, 'relocate' => $relocate, 'timezone' => $tz]);
     }
     else {
-			$sql_p = "INSERT INTO `members` (`user`, `info`, `email`, `birth_month`, `birth_year`, `state`, `relocate`)
-			          VALUES (:user, :info, :email, :birth_month, :birth_year, :state, :relocate)";
-			$pdo->prepare($sql_p)->execute(['user' => $user, 'info' => $info,  'email' => $email, 'birth_month' => $birth_month, 'birth_year' => $birth_year, 'status' => $status]);
+			$sql_p = "INSERT INTO `members` (`user`, `info`, `email`, `birth_month`, `birth_year`, `state`, `relocate`, `timezone`)
+			          VALUES (:user, :info, :email, :birth_month, :birth_year, :state, :relocate, :timezone)";
+			$pdo->prepare($sql_p)->execute(['user' => $user, 'info' => $info,  'email' => $email, 'birth_month' => $birth_month, 'birth_year' => $birth_year, 'status' => $status, 'timezone' => $tz]);
 
 			$sql_m = "INSERT INTO `members` (`user`, `gender`)
 			          VALUES (:user, :gender)";
@@ -180,48 +180,6 @@ echo '</div>' . PHP_EOL;
 
 // echo '<p> &nbsp; </p>';
 
-
-// $timezones = array(
-// 	''     => 'Select&hellip;',
-// 	'-11'  => '(GMT -11:00) Midway Island, Samoa',
-// 	'-10'  => '(GMT -10:00) Hawaii',
-// 	'-9'   => '(GMT -9:00)  Alaska',
-// 	'-8'   => '(GMT -8:00)  Pacific Time (US &amp; Canada)',
-// 	'-7'   => '(GMT -7:00)  Mountain Time (US &amp; Canada)',
-// 	'-6'   => '(GMT -6:00)  Central Time (US &amp; Canada)',
-// 	'-5'   => '(GMT -5:00)  Eastern Time (US &amp; Canada)',
-// 	'-4'   => '(GMT -4:00)  Atlantic Time (Canada), Caracas',
-// 	'-3.5' => '(GMT -3:30)  Newfoundland',
-// 	'-3'   => '(GMT -3:00)  Brazil, Buenos Aires, Georgetown',
-// 	'-2'   => '(GMT -2:00)  Mid-Atlantic',
-// 	'-1'   => '(GMT -1:00)  Azores, Cape Verde Islands',
-// 	'0'    => '(GMT) Western Europe Time, London, Lisbon',
-// 	'1'    => '(GMT +1:00)  Brussels, Copenhagen, Madrid, Paris',
-// 	'2'    => '(GMT +2:00)  Kaliningrad, South Africa',
-// 	'3'    => '(GMT +3:00)  Moscow, St. Petersburg',
-// 	'4'    => '(GMT +4:00)  Baku, Tbilisi',
-// 	'5'    => '(GMT +5:00)  Ekaterinburg, Karachi, Tashkent',
-// 	'5.5'  => '(GMT +5:30)  Bombay, Calcutta, Madras, New Delhi',
-// 	'6'    => '(GMT +6:00)  Dhaka, Colombo',
-// 	'7'    => '(GMT +7:00)  Bangkok, Hanoi, Jakarta',
-// 	'8'    => '(GMT +8:00)  Perth, Singapore, Hong Kong',
-// 	'9'    => '(GMT +9:00)  Tokyo, Seoul, Osaka, Yakutsk',
-// 	'9.5'  => '(GMT +9:30)  Adelaide, Darwin',
-// 	'10'   => '(GMT +10:00) Eastern Australia, Guam, Vladivostok',
-// 	'11'   => '(GMT +11:00) Magadan, Solomon Islands, Caledonia',
-// 	'12'   => '(GMT +12:00) Auckland, Wellington, Fiji'
-// );
-//
-// echo '<div class="row">
-//           <div class="form-group mb-3 col-lg-5 col-md-7 col-sm-9">'. PHP_EOL;
-// echo dynamic_select_menu( the_array: $timezones,
-//                           element_name: 'timezone',
-//                           label: 'Timezone:',
-//                           init_value: $tz
-//                         );
-// echo '</div>'. PHP_EOL;
-// echo '</div>'. PHP_EOL;
-
 include_once 'includes/data/states.php';
 
 echo '<div class="row">
@@ -242,6 +200,18 @@ echo dynamic_select_menu( the_array: ['' => 'Select&hellip;', 'yes' => 'Yes', 'n
                           required: 'yes'
                         );
 echo PHP_EOL . '</div>' . PHP_EOL;
+echo '</div>'. PHP_EOL;
+
+include_once 'includes/data/timezones.php';
+
+echo '<div class="row">
+          <div class="form-group mb-3 col-lg-5 col-md-7 col-sm-9">'. PHP_EOL;
+echo dynamic_select_menu( the_array: $timezones,
+                          element_name: 'timezone',
+                          label: 'Timezone:',
+                          init_value: $tz
+                        );
+echo PHP_EOL . '</div>'. PHP_EOL;
 echo '</div>'. PHP_EOL;
 
 echo <<<"_FORM2"
@@ -291,4 +261,4 @@ _FORM3;
 
 clearstatcache();
 
-include 'includes/footer.inc.php';
+include_once 'includes/footer.inc.php';

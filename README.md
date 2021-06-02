@@ -4,7 +4,7 @@ A PHP script to help people find their perfect mate.
 
 Developed and maintained by [Marc Coleman](https://github.com/s22-tech). Copyright s22Tech.
 
-Demo located at [s22.us/mm](https://www.s22.us/mm/)
+Demo located at [mm.s22.us](https://mm.s22.us/)
 
 ## Overview
 
@@ -58,7 +58,7 @@ Check out their different themes.
 
 ## Installation
 - Create a new database on your server
-- Run the  installer at ```www.your-domain/mm/install/``` and fill in the fields
+- Run the  installer at `www.your-domain/mm/install/` and fill in the fields
 - You're done!
 
 ## To Do
