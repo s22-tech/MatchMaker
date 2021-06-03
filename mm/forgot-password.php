@@ -25,3 +25,6 @@
 	</div>
 
 <?php require_once 'includes/footer.inc.php' ?>
+
+
+<?php sanitize_input(); ?>

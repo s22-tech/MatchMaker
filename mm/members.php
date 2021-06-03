@@ -3,7 +3,7 @@
 require_once 'includes/header.inc.php';
 
 if (isset($_GET['add'])) {
-	$add = sanitize_string($_GET['add']);
+	$add = sanitize_input($_GET['add']);
 	$stmt = $pdo->prepare("SELECT * FROM `friends` WHERE `user`= :add AND `friend`= :user");
 	$stmt->execute(['add' => $add, 'user' => $user]);
 	$row = $stmt->fetch();
@@ -13,7 +13,7 @@ if (isset($_GET['add'])) {
 	}
 }
 else if (isset($_GET['recip'])) {
-	$recip = sanitize_string($_GET['recip']);
+	$recip = sanitize_input($_GET['recip']);
 	$stmt = $pdo->prepare("SELECT * FROM `friends` WHERE `user`= :user AND `friend`= :recip");
 	$stmt->execute(['recip' => $recip, 'user' => $user]);
 	$row = $stmt->fetch();
@@ -23,12 +23,12 @@ else if (isset($_GET['recip'])) {
 	}
 }
 else if (isset($_GET['drop'])) {
-	$drop = sanitize_string($_GET['drop']);
+	$drop = sanitize_input($_GET['drop']);
 	$sql = "DELETE FROM `friends` WHERE `user`= :user AND `friend`= :drop";
 	$pdo->prepare($sql)->execute([$user, $drop]);
 }
 else if (isset($_GET['block'])) {
-	$block = sanitize_string($_GET['block']);
+	$block = sanitize_input($_GET['block']);
 	$stmt = $pdo->prepare("SELECT * FROM `foes` WHERE `user`= :user AND `foe`= :block");
 	$stmt->execute(['block' => $block, 'user' => $user]);
 	$row = $stmt->fetch();
@@ -38,7 +38,7 @@ else if (isset($_GET['block'])) {
 	}
 }
 else if (isset($_GET['unblock'])) {
-	$unblock = sanitize_string($_GET['unblock']);
+	$unblock = sanitize_input($_GET['unblock']);
 	$sql = "DELETE FROM `foes` WHERE `user`= :user AND `foe`= :unblock";
 	$pdo->prepare($sql)->execute(['user' => $user, 'unblock' => $unblock]);
 }
@@ -47,7 +47,7 @@ $gender = $_GET['gender'] ?? '';
 $filter = 'no';
 
 if ($gender != '' ) {
-	$gender = sanitize_string($gender);
+	$gender = sanitize_input($gender);
 	$filter = 'yes';
 }
 

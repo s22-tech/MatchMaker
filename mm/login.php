@@ -4,8 +4,8 @@ require_once 'includes/header.inc.php';
 $error = $user = $pass = '';
 
 if (isset($_POST['user'])) {
-	$user = sanitize_string($_POST['user']);
-	$pass = sanitize_string($_POST['pass']);
+	$user = sanitize_input($_POST['user']);
+	$pass = sanitize_input($_POST['pass']);
 
 	if ($user == '' || $pass == '') {
 		$error = 'Not all fields were entered';

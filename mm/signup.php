@@ -11,11 +11,11 @@
 	if (isset($_SESSION['user'])) destroy_session();
 
 	if (isset($_POST['user'])) {
-		$user   = sanitize_string($_POST['user']);
-		$pass   = sanitize_string($_POST['pass']);
-		$gender = sanitize_string($_POST['gender']);
+		$user   = sanitize_input($_POST['user']);
+		$pass   = sanitize_input($_POST['pass']);
+		$gender = sanitize_input($_POST['gender']);
 
-		if (isset($_POST['icode']) && $icode !== sanitize_string($_POST['icode']) && $config['privacy'] === 'private') {
+		if (isset($_POST['icode']) && $icode !== sanitize_input($_POST['icode']) && $config['privacy'] === 'private') {
 			die('Please request your <a href="/info/signup.php">invitation code</a>.</div></body></html>');
 		}
 

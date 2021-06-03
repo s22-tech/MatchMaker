@@ -3,7 +3,7 @@
 require_once 'includes/header.inc.php';
 
 if (isset($_GET['view'])) {
-	$view = sanitize_string($_GET['view']);
+	$view = sanitize_input($_GET['view']);
 
 	if ($view == $user) $name = "Your";
 	else                $name = "$view's";
@@ -43,3 +43,12 @@ else {
 }
 
 include 'includes/footer.inc.php';
+
+/*
+
+PDO
+fetchColumn() returns a scalar value.
+fetch() returns a single row as an array.
+fetchArray() returns all rows as an array.
+
+*/

@@ -32,6 +32,9 @@ $config['rewrite_base'] = '';  // Leave blank ('') if there's no sub-directory.
 
 $config['public_message_interval'] = 30;  // How many days to show public messages on messages.php
 
+// Does your site use www?  'yes' or 'no'
+$config['use_www'] = 'yes';
+
 
 //////////////////////////
 /// Email
@@ -45,8 +48,10 @@ $config['email'] = 'info@s22.us';
 
 $config['rewrite_base'] = rtrim($config['rewrite_base'], '/');
 
+$www = $config['use_www'] === 'yes' ? 'www.' : '';
+
 // Used in the <head> section and allows relative paths when installed in a sub-folder.
-$config['base_url'] = 'https://'. $config['tld'] . $config['rewrite_base'];
+$config['base_url'] = 'https://'. $www . $config['tld'] . $config['rewrite_base'];
 
 $config['logo'] = $config['rewrite_base'] .'/images/'. $logo_filename;
 

@@ -32,7 +32,7 @@ function destroy_session () {
 }
 
 
-function sanitize_string ($var) {
+function sanitize_input ($var) {
 	$var = trim($var);
    $var = strip_tags($var);
    $var = htmlentities($var);

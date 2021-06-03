@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
 						`birth_year` int(4) DEFAULT NULL,
 						`status` varchar(8) COLLATE latin1_general_ci NOT NULL DEFAULT '',
 						`state` char(2) COLLATE latin1_general_ci DEFAULT '',
-						`timezone` varchar(5) COLLATE latin1_general_ci DEFAULT NULL,
+						`timezone` varchar(20) DEFAULT NULL,
 						 PRIMARY KEY (`id`),
 						 UNIQUE KEY `user_2` (`user`),
 						 KEY `user` (`user`(6))"

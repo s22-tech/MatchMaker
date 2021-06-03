@@ -23,16 +23,16 @@ $relocate    = $row['relocate']    ?? 'maybe';
 ///////////////////////////////
 
 if (isset($_POST['email']) && isset($_POST['gender'])) {
-   $state       = sanitize_string( $_POST['state'] );
-   $relocate    = sanitize_string( $_POST['relocate'] );
-   $tz          = sanitize_string( $_POST['timezone'] );
-   $info        = sanitize_string( $_POST['info'] );
+   $state       = sanitize_input( $_POST['state'] );
+   $relocate    = sanitize_input( $_POST['relocate'] );
+   $tz          = sanitize_input( $_POST['timezone'] );
+   $info        = sanitize_input( $_POST['info'] );
    $info        = preg_replace('/\s\s+/', ' ', $info);
-   $email       = sanitize_string( $_POST['email'] );
-   $gender      = sanitize_string( $_POST['gender'] );
-   $status      = sanitize_string( $_POST['status'] );
-   $birth_month = sanitize_string( $_POST['birth_month'] );
-   $birth_year  = sanitize_string( $_POST['birth_year'] );
+   $email       = sanitize_input( $_POST['email'] );
+   $gender      = sanitize_input( $_POST['gender'] );
+   $status      = sanitize_input( $_POST['status'] );
+   $birth_month = sanitize_input( $_POST['birth_month'] );
+   $birth_year  = sanitize_input( $_POST['birth_year'] );
 
     if ($row) {
 			$sql = "UPDATE `members`
@@ -64,60 +64,60 @@ $info = stripslashes( preg_replace('/\s\s+/', ' ', $info) );
 # $_FILES will be empty if a user attempts to upload a file greater than post_max_size in your php.ini
 # post_max_size should be >= upload_max_filesize in your php.ini.
 
-if (isset($_FILES['upload_image']['name']) && !empty($_FILES['upload_image']['name']) && isset($_POST['submit_button']) ) {
-	$originals_dir = $config['image_dir'] .'/originals/'. strtolower($user);
-	if (!is_dir($originals_dir)) {
-		mkdir($originals_dir, 0755, true);  // true makes it recursive.
-	}
-	$original = $originals_dir .'/'. strtolower($user) .'-'. time() .'.jpg';
-	move_uploaded_file($_FILES['upload_image']['tmp_name'], $original);
-	$type_ok = TRUE;
-
-	$src = match($_FILES['upload_image']['type']) {
-		'image/jpeg', 'image/pjpeg' => imagecreatefromjpeg($original),
-		'image/png' => imagecreatefrompng($original),
-		'image/gif' => imagecreatefromgif($original),
-		 default    => $type_ok = false,
-	};
-
-	$_FILES['upload_image']['name'] = '';
-// 	unset($_FILES);
-	unset($_FILES['upload_image']);
-
-	if ($type_ok) {
-		$save_to = $config['image_dir'] .'/members/'. strtolower($user) .'/'. strtolower($user) .'.jpg';
-		copy_mkdir($original, $save_to);
-		[$w, $h] = getimagesize($save_to);
-
-		$max = 300;
-		$tw  = $w;
-		$th  = $h;
-
-		if ($w > $h && $max < $w) {
-			$th = $max / $w * $h;
-			$tw = $max;
-		}
-		elseif ($h > $w && $max < $h) {
-			$tw = $max / $h * $w;
-			$th = $max;
-		}
-		elseif ($max < $w) {
-			$tw = $th = $max;
-		}
-
-		$tmp = imagecreatetruecolor($tw, $th);
-		imagecopyresampled($tmp, $src, 0, 0, 0, 0, $tw, $th, $w, $h);
-		imageconvolution($tmp, array(array(-1, -1, -1),
-		array(-1, 16, -1), array(-1, -1, -1)), 8, 0);
-		imagejpeg($tmp, $save_to);
-		imagedestroy($tmp);
-		imagedestroy($src);
-	}
-	else {
-// 		unlink($save_to);
-		echo '<br><span class="error">&bull; ERROR &mdash; image must be either a jpg, png, or gif</span><br><br>';
-	}
-}
+// if (isset($_FILES['upload_image']['name']) && !empty($_FILES['upload_image']['name']) && isset($_POST['submit_button']) ) {
+// 	$originals_dir = $config['image_dir'] .'/originals/'. strtolower($user);
+// 	if (!is_dir($originals_dir)) {
+// 		mkdir($originals_dir, 0755, true);  // true makes it recursive.
+// 	}
+// 	$original = $originals_dir .'/'. strtolower($user) .'-'. time() .'.jpg';
+// 	move_uploaded_file($_FILES['upload_image']['tmp_name'], $original);
+// 	$type_ok = TRUE;
+//
+// 	$src = match($_FILES['upload_image']['type']) {
+// 		'image/jpeg', 'image/pjpeg' => imagecreatefromjpeg($original),
+// 		'image/png' => imagecreatefrompng($original),
+// 		'image/gif' => imagecreatefromgif($original),
+// 		 default    => $type_ok = false,
+// 	};
+//
+// 	$_FILES['upload_image']['name'] = '';
+// // 	unset($_FILES);
+// 	unset($_FILES['upload_image']);
+//
+// 	if ($type_ok) {
+// 		$save_to = $config['image_dir'] .'/members/'. strtolower($user) .'/'. strtolower($user) .'.jpg';
+// 		copy_mkdir($original, $save_to);
+// 		[$w, $h] = getimagesize($save_to);
+//
+// 		$max = 300;
+// 		$tw  = $w;
+// 		$th  = $h;
+//
+// 		if ($w > $h && $max < $w) {
+// 			$th = $max / $w * $h;
+// 			$tw = $max;
+// 		}
+// 		elseif ($h > $w && $max < $h) {
+// 			$tw = $max / $h * $w;
+// 			$th = $max;
+// 		}
+// 		elseif ($max < $w) {
+// 			$tw = $th = $max;
+// 		}
+//
+// 		$tmp = imagecreatetruecolor($tw, $th);
+// 		imagecopyresampled($tmp, $src, 0, 0, 0, 0, $tw, $th, $w, $h);
+// 		imageconvolution($tmp, array(array(-1, -1, -1),
+// 		array(-1, 16, -1), array(-1, -1, -1)), 8, 0);
+// 		imagejpeg($tmp, $save_to);
+// 		imagedestroy($tmp);
+// 		imagedestroy($src);
+// 	}
+// 	else {
+// // 		unlink($save_to);
+// 		echo '<br><span class="error">&bull; ERROR &mdash; image must be either a jpg, png, or gif</span><br><br>';
+// 	}
+// }
 
 show_profile(strtolower($user), strtolower($user));
 
@@ -244,7 +244,7 @@ echo <<<"_FORM3"
 	<div class="form-group mb-3">
 		<label for="upload_image"> Photo: </label>
 		<input type="file" class="form-control-file" name="upload_image" id="upload_image" aria-describedby="file_help">
-		<small id="file_help" class="form-text text-muted">Choose a good, clear photo of yourself to upload.</small>
+		<small id="file_help" class="form-text text-muted"><-- DISABLED IN DEMO</small>
 	</div>
 
 	<p> &nbsp; </p>

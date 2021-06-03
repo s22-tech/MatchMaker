@@ -2,7 +2,7 @@
 
 require_once 'includes/header.inc.php';
 
-if (isset($_GET['view'])) $view = sanitize_string($_GET['view']);
+if (isset($_GET['view'])) $view = sanitize_input($_GET['view']);
 else                      $view = $user;
 
 if ($view == $user) {

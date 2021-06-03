@@ -2,7 +2,7 @@
 
 require_once 'includes/header.inc.php';
 
-if (isset($_GET['view'])) $view = sanitize_string($_GET['view']);
+if (isset($_GET['view'])) $view = sanitize_input($_GET['view']);
 else                      $view = $user;
 
 
@@ -35,7 +35,7 @@ echo '<br>';
 
 if ($foes) {
 	echo '<span class="subhead">Members you\'ve blocked:</span> <br><br>
-	<ul>';
+	<ul class="grid">';
 	foreach ($foes as $foe) {
 		if (file_exists($config['image_dir'] . '/members/'. strtolower($foe) .'/'. $foe .'.jpg')) {
 			echo '<li><a href="'. $config['rewrite_base'] .'/member.php?view='.

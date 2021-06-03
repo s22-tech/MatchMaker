@@ -3,7 +3,7 @@
 require_once 'functions.inc.php';
 
 if (isset($_POST['user'])) {
-	$user = sanitize_string($_POST['user']);
+	$user = sanitize_input($_POST['user']);
 	$stmt = $pdo->prepare("SELECT * FROM `members` WHERE `user`= :user");
 	$stmt->execute(['user' => $user]);
 	$row = $stmt->fetch();
@@ -22,4 +22,4 @@ if (isset($_POST['user'])) {
 __halt_compiler();
 
 This file can't be named .inc.php
-That prevents signup.php from using it since those files are banned from being called by browsers with the .htaccess file.
+That prevents signup.php from using it since those files are banned from being called by browsers.
