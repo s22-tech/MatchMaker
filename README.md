@@ -31,7 +31,7 @@ Click the "Watch" button to be notified of all updates.
 - choose either a private (invitation only) or public (open to all) site
 - ability to block another member from seeing your profile
 	- the blockee will not be able to see the blocker and vice versa
-	- ability to hide individual messages
+	- ability to hide individual messages, too
 - added marital status, gender to members table (more to come)
 - ability to filter members based on gender
 - shows only private messages after clicking on a member
