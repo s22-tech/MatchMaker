@@ -23,10 +23,10 @@ Click the "Watch" button to be notified of all updates.
 
 - PHP 8 compatibility
 - beautiful new UI using Bootstrap 5
-- jQuery 3.6.0
 - responsive template suitable for both desktop and mobile
 - added .inc.php suffix where beneficial
 - fanatical focus on security
+- removed jQuery dependency - pure JavaScript now
 - local fonts - no calls to Google or any other 3rd party
 - choose either a private (invitation only) or public (open to all) site
 - ability to block another member from seeing your profile
