@@ -13,6 +13,20 @@
 		<script src="<?php echo $config['rewrite_base'] ?>/includes/js/fslightbox.js"></script>
 		<script src="<?php echo $config['rewrite_base'] ?>/includes/js/bootstrap.min.js"></script>
 		<script src="<?php echo $config['rewrite_base'] ?>/includes/js/functions.js"></script>
+<<<<<<< HEAD
+=======
+
+		<script>
+			$( document ).on( "pagecreate", function() {
+				$( ".photopopup" ).on({
+					popupbeforeposition: function() {
+						var maxHeight = $( window ).height() - 60 + "px";
+						$( ".photopopup img" ).css( "max-height", maxHeight );
+					}
+				});
+			});
+
+>>>>>>> 233e7a72dc517c78f238f667e87d765c4b60e8c3
 
 		<script>
 		  // Choose from 3 different button styles.
@@ -29,6 +43,7 @@
 			});
 
 
+<<<<<<< HEAD
 			$(document).on("pagecreate", function() {
 				$(".photopopup").on({
 					popupbeforeposition: function() {
@@ -38,6 +53,8 @@
 				});
 			});
 		</script>
+=======
+>>>>>>> 233e7a72dc517c78f238f667e87d765c4b60e8c3
 
   </body>
 </html>
