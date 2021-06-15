@@ -1,6 +1,6 @@
 ![Banner](https://raw.githubusercontent.com/s22-tech/MatchMaker/master/screenshots/banner.png)
 
-A PHP script to help people find their perfect mate.
+A simple and secure PHP script to help people find their perfect mate.
 
 Developed and maintained by [Marc Coleman](https://github.com/s22-tech). Copyright s22Tech.
 
@@ -12,6 +12,8 @@ This script started life as Robin's Nest from the "Learning PHP, MySQL, & JavaSc
 
 The look and feel can be changed in a flash simply by replacing the bootstrap file with your choice from https://bootswatch.com
 Check out their different themes.
+
+Click the "Watch" button to be notified of all updates.
 
 ## Requirements
 
@@ -66,6 +68,7 @@ Check out their different themes.
 - add ability to upload multiple photos
 - add an admin section
 - add a forgotten password feature
+- create an add-on/modules feature to keep the core small
 
 ## License
 

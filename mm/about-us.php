@@ -1,5 +1,8 @@
-<?php require_once 'includes/header.inc.php' ?>
+<?php
 
-	Add your story here...
+require_once 'includes/header.inc.php';
 
-<?php include_once( 'includes/footer.inc.php' ) ?>
+echo 'Our story starts off with...';
+
+
+include 'includes/footer.inc.php';

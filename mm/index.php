@@ -8,7 +8,7 @@ require_once 'includes/header.inc.php';
 echo '<div class="center">';
 
 if ($logged_in) echo "$user, you are logged in!";
-else            echo 'Please sign up or log in to access our site.';
+else            echo 'First, sign up to create an account, then log in to access our demo.';
 echo '</div>';
 
 

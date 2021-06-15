@@ -1,5 +1,8 @@
-<?php require_once 'includes/header.inc.php' ?>
+<?php
 
-    Add your "legalese" here...
+require_once 'includes/header.inc.php';
 
-<?php include_once( 'includes/footer.inc.php' ) ?>
+echo 'We make no guarantees regarding...';
+
+
+include 'includes/footer.inc.php';

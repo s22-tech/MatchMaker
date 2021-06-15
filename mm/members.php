@@ -82,7 +82,7 @@ else {
 	$stmt = $pdo->query("SELECT `user` FROM `members` ORDER BY `user`");
 }
 
-$foe_row = $pdo->query("SELECT * FROM `foes`")->fetchAll();
+$foe_row = $pdo->query("SELECT * FROM `foes`")->fetchAll(PDO::FETCH_ASSOC);
 
 while ($row = $stmt->fetch()) {
 	$banned = false;
@@ -163,7 +163,7 @@ include 'includes/footer.inc.php';
 
 PDO
 fetchColumn() returns a scalar value.
-fetch() returns a single row as an array.
-fetchArray() returns all rows as an array.
+fetch() returns the next single row as an array.
+fetchAll() returns all rows as an array.
 
 */

@@ -39,7 +39,7 @@ $config['use_www'] = 'yes';
 //////////////////////////
 /// Email
 //////////////////////////
-$config['email'] = 'info@s22.us';
+$config['email'] = 'your@email.com';
 
 
 //////////////////////////

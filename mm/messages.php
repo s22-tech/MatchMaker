@@ -26,7 +26,7 @@ if (isset($_POST['message'])) {
 	}
 }
 
-$audience = '';  // messages -- '0' equals public, '1' equals private.
+$audience = '';  // messages -- 'all' equals public, '' equals private.
 if ($view != '') {
 	if ($view == $user) {
 		$name1 = $name2 = 'Your';

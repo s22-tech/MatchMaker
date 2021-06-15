@@ -6,6 +6,7 @@
 // http://www.unitedstateszipcodes.org/zip-code-database/
 
 $states = [
+	''   => 'Select...',
 	'AL' => 'Alabama',
 	'AK' => 'Alaska',
 	'AZ' => 'Arizona',

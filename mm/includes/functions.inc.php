@@ -49,18 +49,24 @@ function show_profile ($view, $user) {
 	echo PHP_EOL . '<div class="col-lg-4">' . PHP_EOL;
 	$img_src = $config['rewrite_base'] .'/includes/get_image.php?view='. strtolower($view) .'/'. $view .'.jpg';
 
-	$originals = $config['image_dir'] .'/originals/'. strtolower($view);
-	if (is_dir($originals)) {
-		$files = scandir($originals, SCANDIR_SORT_DESCENDING);
-		$newest_img = $files[0];
-	}
-	if (file_exists($config['image_dir'] .'/members/'. strtolower($view) .'/'. $view .'.jpg')) {
-		echo '<a href="'. $config['rewrite_base'] .'/images/originals/'. strtolower($view) .'/'. $newest_img .'" data-rel="lightcase"> <img src="'. $img_src .'" style="float:left;" alt="This is the default caption text" /> </a>';
-	}
-	else {
-		echo '<img src="'. $config['rewrite_base'] .'/images/no_image_yet.png" width="90px" height="90px" style="float:left;" />';
-	}
-
+	if (!empty($_GET['view'])) {
+		$originals = $config['image_dir'] .'/originals/'. strtolower($view);
+		if (is_dir($originals)) {
+			$files = scandir($originals, SCANDIR_SORT_DESCENDING);
+			$newest_img = $files[0];
+		}
+		$orig_src = $config['rewrite_base'] .'/includes/get_original.php?view='. strtolower($view) .'/'. $newest_img;
+   	if (file_exists($config['image_dir'] .'/members/'. strtolower($view) .'/'. $view .'.jpg')) {
+			echo '<a data-fslightbox="gallery" href="'. $orig_src .'"> <img src="'. $img_src .'" style="float:left;" alt="This is the default caption text" /> </a>';
+      }
+		else {
+			echo '<img src="'. $config['rewrite_base'] .'/images/no_image_yet.png" width="90px" height="90px" style="float:left;" />';
+		}
+   }
+   else {
+// 		echo '<a href="'. $config['rewrite_base'] .'/members.php?view='. $view .'"> <img src="'. $img_src .'" style="float:left;" /> </a>';
+		echo '<img src="'. $img_src .'" style="float:left;" />';
+   }
    echo '</div>' . PHP_EOL;
 
 	$stmt = $pdo->prepare("SELECT * FROM `foes` WHERE `user`= :user AND `foe`= :view");
