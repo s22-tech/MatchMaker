@@ -10,6 +10,10 @@
 				<a class="btn btn-outline-secondary btn-sm" href="<?php echo $config['rewrite_base'] ?>/site-rules.php" role="button"> Rules </a>
 		</footer>
 
+		<script src="<?php echo $config['rewrite_base'] ?>/includes/js/fslightbox.js"></script>
+		<script src="<?php echo $config['rewrite_base'] ?>/includes/js/bootstrap.min.js"></script>
+		<script src="<?php echo $config['rewrite_base'] ?>/includes/js/functions.js"></script>
+
 		<script>
 			$( document ).on( "pagecreate", function() {
 				$( ".photopopup" ).on({
@@ -35,19 +39,7 @@
 			});
 		</script>
 
-		<?php // jQuery must be loaded in the header before the Lightcase code to work.  ?>
-		<script src="<?php echo $config['rewrite_base'] ?>/vendor/lightcase/js/lightcase.js"></script>
-		<script src="<?php echo $config['rewrite_base'] ?>/includes/js/javascript.js"></script>
-		<script src="<?php echo $config['rewrite_base'] ?>/includes/js/functions.js"></script>
 
-		<script>
-			jQuery(document).ready(function($) {
-				$('a[data-rel^=lightcase]').lightcase({
-					swipe: true,
-					fullscreenModeForMobile: true
-				});
-			});
-		</script>
 
   </body>
 </html>
